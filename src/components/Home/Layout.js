@@ -1,8 +1,9 @@
 import React from 'react';
-import { state, setState, useState, handleClick } from 'react'
+import { state, setState, useState, useEffect, handleClick } from 'react'
 import { Button } from '../Button';
 import './MainDisplay.css'
 import './Ships.css'
+import './Map.css'
 
 const Layout = () => {
     return (
@@ -20,8 +21,9 @@ const Sidebar = () => {
     return (
         <div className='sidebar-wrapper'>
             <Map isExpanded={isMapExpanded} />
+            <button onClick={() => setIsMapExpanded(!isMapExpanded)}>View</button>
             <ConversationLog />
-            <Button onClick={() => setIsMapExpanded(!isMapExpanded)}>View</Button>
+
         </div>
     );
 };
@@ -29,7 +31,7 @@ const Sidebar = () => {
 
 const Map = ({ isExpanded }) => {
     const mapStyle = {
-        height: isExpanded ? '100%' : '50%',
+        height: isExpanded ? '100%' : '30%',
     };
 
     return (
@@ -42,7 +44,7 @@ const Map = ({ isExpanded }) => {
 
 
 const ConversationLog = () => (
-    <div className="message-wrapper" style={{ height: '50%' }}>
+    <div className="message-wrapper">
         <h2 style={{ fontSize: '18px', textAlign: 'center' }}>Conversation Log</h2>
         <ul className='message-list' style={{ listStyleType: 'none', padding: 0 }}>
             <li className='log' style={{ margin: '10px 0', borderBottom: '1px solid #ccc' }}>Message 1</li>
@@ -55,7 +57,7 @@ const ConversationLog = () => (
 
 // The function to component for ships list and main display
 const MainContent = () => (
-    <div style={{ width: '80%', height: '100%', backgroundColor: '#fff' }}>
+    <div style={{ width: '80%', height: '100%', backgroundColor: '#000' }}>
         <Ships />
         <MainDisplay />
     </div>
@@ -76,8 +78,6 @@ const MainDisplay = () => (
             <div className="signal">
                 <img src="../Assets/Vector.png" alt="freq"></img>
             </div>
-
-
             <div className="feature">
                 <ul className="items-list">
                     {items.map(item => (
@@ -85,7 +85,7 @@ const MainDisplay = () => (
                     ))}
                 </ul>
             </div>
-            {/* <Button>Who's talking</Button> */}
+            <button>Who's talking</button>
         </div>
     </div>
 );
@@ -102,6 +102,10 @@ const ships = [
     { id: 2, name: 'Defiant', captain: 'Benjamin Sisko' },
     { id: 3, name: 'Voyager', captain: 'Kathryn Janeway' },
     { id: 4, name: 'Discovery', captain: 'Gabriel Lorca' },
+    { id: 1, name: 'Enterprise', captain: 'James T. Kirk' },
+    { id: 2, name: 'Defiant', captain: 'Benjamin Sisko' },
+    { id: 3, name: 'Voyager', captain: 'Kathryn Janeway' },
+    { id: 4, name: 'Discovery', captain: 'Gabriel Lorca' },
 ];
 const Ships = () => (
     <div className="ships_content">
@@ -113,7 +117,7 @@ const Ships = () => (
 
 const Ship = ({ name, captain }) => (
     <div className="ship_img">
-        <img src={`/images/ships/${name}.jpg`} alt={name} />
+        <img src={`/Assets/ships/${name}.jpg`} alt={name} />
         {/* <h2>{name}</h2>
         <p>Captain: {captain}</p> */}
     </div>

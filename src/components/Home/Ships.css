@@ -2,9 +2,9 @@
     display: flex;
     color: #fff;
     background: #363636;
-    overflow-x: 'scroll'; 
-    white-space: 'nowrap';
-    width: '80%'; 
+    overflow-x: scroll; 
+    white-space: nowrap;
+    /* width: 80%;  */
 }
 
 .ship_img {
@@ -12,4 +12,5 @@
     width: 174px;
     border: 2px solid;
     border-radius: 50%;
+    text-align: center;
 }
